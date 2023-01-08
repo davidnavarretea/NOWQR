@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import QRCodeStyling from "qr-code-styling";
 function App() {
+  const qrCode = new QRCodeStyling({
+    width: 3000,
+    height: 3000,
+    type: "png",
+    data: "https://now.tienda/",
+    image: "nowtienda.png",
+    dotsOptions: {
+        color: "#000",
+        type: "dots"
+    },
+    imageOptions: {
+        crossOrigin: "anonymous",
+        margin: 20
+    },
+    cornersSquareOptions: {
+      type: "dot"
+    },
+    cornersDotOptions: {
+      type: "dot"
+    },
+  });
+
+  qrCode.append(document.getElementById("canvas"));
+  qrCode.download({ name: "qr", extension: "svg" });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+<div id="canvas"></div>
+  )
 }
 
 export default App;
